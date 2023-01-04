@@ -27,6 +27,7 @@ export default function Navigation({artpieces, setSearch, search}) {
                                 <Nav className="justify-content-end flex-grow-1 pe-3">
                                     <Nav.Link><Link className='text-secondary' to="/">Home</Link></Nav.Link>
                                     <Nav.Link><Link className='text-secondary' to="/artworks" >Artworks</Link></Nav.Link>
+                                    <Nav.Link><Link className='text-secondary' to="/favouritePics" >Favourites</Link></Nav.Link>
                                     <NavDropdown
                                         title="Dropdown"
                                         id={`offcanvasNavbarDropdown-expand-lg`}

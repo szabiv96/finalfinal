@@ -1,16 +1,20 @@
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
-import AddToFavouritePics from './AddToFavouritePics';
+import RemoveFromFavourite from './RemoveFromFavourite';
+import { useState } from 'react';
 
-export default function Artpiece({ artpieces, search, favPics }) {
-    
+export default function FavArtpiece({ favPics }) {
+    console.log(favPics);
+    const [favS, setfavS] = useState(favPics);
+
+    function deleteFav(id) {
+        setfavS(favS.filter(favPic => favPic.id != id))
+    }
 
     return (
         <Row xs={1} md={2} className="g-4 d-flex justify-content-around">
-            {artpieces.filter((artwork) => {
-                return search.toLowerCase() === '' ? artwork : artwork.title.toLowerCase().includes(search)
-            }).map(artwork =>
-                <Card key={artwork.id} style={{ width: '50vh' }} className='p-0'>
+            {favS.map(artwork =>
+                <Card key={artwork.id} style={{ width: '50vh' }} className='p-0 align'>
                     <Card.Img
                         variant="top"
                         src={artwork.primaryimageurl} />
@@ -19,7 +23,7 @@ export default function Artpiece({ artpieces, search, favPics }) {
                         <Card.Text>
                             {artwork.medium}
                         </Card.Text>
-                        <AddToFavouritePics favPics={favPics} artwork={artwork} />
+                        <RemoveFromFavourite deleteR={() => deleteFav(artwork.id)}/>
                     </Card.Body>
                 </Card>
             )}

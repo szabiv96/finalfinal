@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Artworks from './pages/Artworks';
 import Navigation from './components/Navigation';
+import FavouritePics from './pages/FavouritePics';
 import React, { useState, useEffect } from 'react';
 
 
@@ -20,10 +21,10 @@ function App() {
             });
     }, [perPage]);
 
-    
+    //props what passed away to components
     console.log(artpieces);
-
     const [search, setSearch] = useState('');
+    let favPics = [];
 
 
   return (
@@ -35,7 +36,8 @@ function App() {
 
     <Routes>
       <Route path='/' element={<Home />} />
-      <Route path='/artworks' element={<Artworks artpieces={artpieces} search={search} />}/>
+      <Route path='/favouritePics' element={<FavouritePics  favPics={favPics}/>} />
+      <Route path='/artworks' element={<Artworks artpieces={artpieces} search={search} favPics={favPics} />}/>
     </Routes>
     </>
   );
